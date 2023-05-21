@@ -359,7 +359,8 @@ class GradientReconstructor(pl.LightningModule):
                             len(recon_mean[i])),
                         global_step=self.global_step,
                     )
-            self.manual_backward(reconstruction_loss, self.optimizer)
+#             self.manual_backward(reconstruction_loss, self.optimizer)
+            self.manual_backward(reconstruction_loss)
             if self.hparams["signed_gradients"]:
                 if self.grayscale:
                     self.best_guess_grayscale.grad.sign_()
