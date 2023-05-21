@@ -273,7 +273,8 @@ class GradientReconstructor(pl.LightningModule):
             DummyGradientDataset(num_values=self.num_iterations, ), )
 
     def transfer_batch_to_device(self, batch: Any,
-                                 device: Optional[torch.device]) -> Any:
+                                 device: Optional[torch.device],
+                                dataloader_idx: Optional[int]) -> Any:
         if not self._batch_transferred:
             self.ground_truth_labels = self.ground_truth_labels.detach().to(
                 self.device)
